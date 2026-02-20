@@ -293,6 +293,21 @@ body.menu-open {
     background: #000000;
 }
 
+/* Apple-style outline button */
+.btn-outline-apple {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.btn-outline-apple:hover {
+    background: var(--primary);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 113, 227, 0.3);
+}
+
 .btn-lg {
     padding: 16px 32px;
     font-size: 1rem;
@@ -1321,9 +1336,9 @@ body.menu-open {
 }
 
 @keyframes scrollWebsite {
-    0%, 10% { transform: translateY(0); }
-    45%, 55% { transform: translateY(calc(-100% + 400px)); }
-    90%, 100% { transform: translateY(0); }
+    0%, 15% { transform: translateY(0); }
+    50%, 65% { transform: translateY(calc(-100% + 400px)); }
+    100% { transform: translateY(0); }
 }
 
 .browser-scroll-container img {
@@ -1507,29 +1522,87 @@ body.menu-open {
     }
     
     .references-stats {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 40px 30px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 30px 20px;
     }
 }
 
 @media (max-width: 640px) {
+    .showcase-slide {
+        padding: 20px 10px;
+    }
+    
     .showcase-info h3 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .showcase-info > p {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+        line-height: 1.5;
+    }
+    
+    .showcase-tag {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+        margin-bottom: 10px;
+    }
+    
+    .showcase-features {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .showcase-features span {
+        padding: 6px 10px;
+        font-size: 0.75rem;
     }
     
     .browser-content {
-        height: 280px;
+        height: 250px;
     }
     
     @keyframes scrollWebsite {
-        0%, 10% { transform: translateY(0); }
-        45%, 55% { transform: translateY(calc(-100% + 280px)); }
-        90%, 100% { transform: translateY(0); }
+        0%, 15% { transform: translateY(0); }
+        50%, 65% { transform: translateY(calc(-100% + 250px)); }
+        100% { transform: translateY(0); }
+    }
+    
+    .showcase-controls {
+        margin-top: 25px;
+        gap: 16px;
+    }
+    
+    .showcase-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .references-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 25px 15px;
+        margin-top: 50px;
     }
     
     .stat-number {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+    
+    .stat-suffix {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+        margin-top: 5px;
+    }
+    
+    .showcase-info .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
     }
 }
 
