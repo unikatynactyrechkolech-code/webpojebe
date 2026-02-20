@@ -1,0 +1,15 @@
+{
+  "name": "webpojede",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "WebPojede - Tvorba webových stránek",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "resend": "^2.0.0",
+    "stripe": "^14.14.0"
+  }
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platba úspěšná | WebPojede</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://webpojede.cz/success">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg">
+    
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .success-section {
+            padding: 120px 0 80px;
+            min-height: calc(100vh - var(--nav-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .success-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 520px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--success) 0%, #2ecc71 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .success-icon i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+        
+        .success-card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .success-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .success-details {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+        
+        .success-details-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        
+        .success-details-row:not(:last-child) {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .success-details-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .success-details-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .success-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            animation: confetti-fall 3s ease-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .success-card {
+                padding: 40px 24px;
+                margin: 0 16px;
+            }
+            
+            .success-card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .success-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg" alt="WebPojede" class="logo-icon">
+                <span>WebPojede</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="nav-link">Domů</a>
+                <a href="/sluzby" class="nav-link">Služby</a>
+                <a href="/cenik" class="nav-link">Ceník</a>
+                <a href="/o-nas" class="nav-link">O nás</a>
+                <a href="/pruvodce" class="nav-link">Průvodce</a>
+                <a href="/kontakt" class="nav-link">Kontakt</a>
+            </div>
+            <div class="nav-actions">
+                <a href="/kontakt" class="nav-cta">Začít projekt</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Success Section -->
+    <section class="success-section">
+        <div class="container">
+            <div class="success-card">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h1>Platba proběhla úspěšně!</h1>
+                <p>Děkujeme za vaši důvěru. Vaše objednávka byla přijata a brzy se vám ozveme s dalšími kroky.</p>
+                
+                <div class="success-details">
+                    <div class="success-details-row">
+                        <span class="success-details-label">Číslo objednávky</span>
+                        <span class="success-details-value" id="orderNumber">WP-2026-XXXX</span>
+                    </div>
+                    <div class="success-details-row">
+                        <span class="success-details-label">Služba</span>
+                        <span class="success-details-value">Webové stránky</span>
+                    </div>
+                    <div class="success-details-row">
+                        <span class="success-details-label">Uhrazeno</span>
+                        <span class="success-details-value">4 990 Kč</span>
+                    </div>
+                </div>
+                
+                <div class="success-actions">
+                    <a href="/" class="btn btn-primary">
+                        Zpět na hlavní stránku <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="/kontakt" class="btn btn-outline">
+                        Kontaktovat nás
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="nav-logo">
+                        <img src="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg" alt="WebPojede" class="logo-icon">
+                        <span>WebPojede</span>
+                    </a>
+                    <p>Profesionální tvorba webových stránek a aplikací.</p>
+                    <p class="footer-ico">IČO: 22508066</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigace</h4>
+                    <a href="/">Domů</a>
+                    <a href="/sluzby">Služby</a>
+                    <a href="/cenik">Ceník</a>
+                    <a href="/o-nas">O nás</a>
+                    <a href="/pruvodce">Průvodce</a>
+                    <a href="/kontakt">Kontakt</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Služby</h4>
+                    <a href="/sluzby#weby">Webové stránky</a>
+                    <a href="/sluzby#aplikace">Webové aplikace</a>
+                    <a href="/pruvodce">Průvodce pojmy</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontakt</h4>
+                    <a href="mailto:info@webpojede.cz">info@webpojede.cz</a>
+                    <a href="tel:+420773009851">+420 773 009 851</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WebPojede. Ondřej Bayer & David Kropáč.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Generate random order number
+        document.getElementById('orderNumber').textContent = 
+            'WP-2026-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+        
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#0071e3', '#5856d6', '#34c759', '#ff9f0a', '#ff3b30'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 50);
+            }
+        }
+        
+        createConfetti();
+    </script>
+</body>
+</html>

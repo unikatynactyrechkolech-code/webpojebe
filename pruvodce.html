@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Desatero webu | WebPojede - Průvodce tvorbou webových stránek</title>
+    <meta name="title" content="Desatero webu | WebPojede - Průvodce tvorbou webových stránek">
+    <meta name="description" content="10 klíčových pojmů přeložených do lidské řeči. Abyste přesně věděli, do čeho investujete. Hosting, doména, SEO, responzivní design a další.">
+    <meta name="keywords" content="průvodce tvorbou webu, co je hosting, co je doména, co je SEO, responzivní design, webové pojmy, jak funguje web, slovník webu">
+    <meta name="author" content="WebPojede">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://webpojede.cz/pruvodce">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://webpojede.cz/pruvodce">
+    <meta property="og:title" content="Desatero webu | WebPojede">
+    <meta property="og:description" content="10 klíčových pojmů přeložených do lidské řeči.">
+    <meta property="og:image" content="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:site_name" content="WebPojede">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Desatero webu | WebPojede">
+    <meta name="twitter:description" content="Webové pojmy přeložené do lidské řeči.">
+    <meta name="twitter:image" content="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Desatero webu - 10 klíčových pojmů",
+        "description": "Průvodce webovými pojmy přeloženými do lidské řeči",
+        "author": {
+            "@type": "Organization",
+            "name": "WebPojede"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "WebPojede",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg"
+            }
+        }
+    }
+    </script>
+    
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .guide-hero {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.05) 0%, rgba(88, 86, 214, 0.05) 100%);
+            padding: 140px 24px 80px;
+        }
+        .guide-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .guide-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .guide-label-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient);
+            border-radius: 8px;
+        }
+        .guide-label span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+        .guide-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 24px;
+        }
+        .guide-desc {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .guide-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 60px auto 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow-hover);
+        }
+        .guide-image img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+        .guide-terms {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .term-item {
+            display: flex;
+            gap: 32px;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+            align-items: flex-start;
+        }
+        .term-item:last-child {
+            border-bottom: none;
+        }
+        .term-image {
+            width: 200px;
+            flex-shrink: 0;
+        }
+        .term-image img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+        .term-content {
+            flex: 1;
+        }
+        .term-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .term-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .term-desc {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .guide-footer-note {
+            text-align: center;
+            padding: 60px 24px;
+            border-top: 1px solid var(--border-color);
+        }
+        .guide-footer-note p {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .term-item {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .term-image {
+                width: 100%;
+            }
+            .term-image img {
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg" alt="WebPojede - Profesionální tvorba webových stránek a e-shopů na míru" class="logo-icon">
+                <span>WebPojede</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="/" class="nav-link">Domů</a>
+                <a href="/sluzby" class="nav-link">Služby</a>
+                <a href="/cenik" class="nav-link">Ceník</a>
+                <a href="/o-nas" class="nav-link">O nás</a>
+                <a href="/pruvodce" class="nav-link active">Průvodce</a>
+                <a href="/kontakt" class="nav-link">Kontakt</a>
+            </div>
+            <div class="nav-actions">
+                <a href="/kontakt" class="nav-cta">Začít projekt</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Guide Hero -->
+    <section class="guide-hero">
+        <div class="guide-hero-content">
+            <div class="guide-label">
+                <div class="guide-label-icon"></div>
+                <span>Průvodce webovými technologiemi</span>
+            </div>
+            <h1 class="guide-title">
+                Desatero<br>
+                vašeho nového<br>
+                webu.
+            </h1>
+            <p class="guide-desc">
+                10 klíčových pojmů přeložených do lidské řeči. Abyste přesně věděli, do čeho investujete a jaké technologie pohání váš byznys.
+            </p>
+        </div>
+        <div class="guide-image">
+            <img src="https://cdr.cz/sites/default/files/data1.jpg" alt="Datové centrum">
+        </div>
+    </section>
+
+    <!-- Terms -->
+    <section class="guide-terms">
+        
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80" alt="Doména">
+            </div>
+            <div class="term-content">
+                <div class="term-label">01 Identita</div>
+                <h3 class="term-title">Doména</h3>
+                <p class="term-desc">
+                    Unikátní internetová adresa (např. <em>vasefirma.cz</em>). Je to vaše výhradní vlastnictví, přes které vás zákazníci i vyhledávače jednoznačně najdou.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&q=80" alt="Hosting">
+            </div>
+            <div class="term-content">
+                <div class="term-label">02 Infrastruktura</div>
+                <h3 class="term-title">Hostingová infrastruktura</h3>
+                <p class="term-desc">
+                    Vyhrazený prostor na výkonných serverech, kde jsou fyzicky uložena data vašeho webu. Kvalita hostingu přímo určuje stabilitu a rychlost načítání.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="SEO">
+            </div>
+            <div class="term-content">
+                <div class="term-label">03 Viditelnost</div>
+                <h3 class="term-title">SEO (Optimalizace)</h3>
+                <p class="term-desc">
+                    Soubor úprav, které pomáhají webu získat přední pozice ve výsledcích Google. Cílem je získat relevantní návštěvníky přirozenou cestou bez placení reklamy.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="Technická správa">
+            </div>
+            <div class="term-content">
+                <div class="term-label">04 Bezpečnost</div>
+                <h3 class="term-title">Technická správa</h3>
+                <p class="term-desc">
+                    Pravidelná údržba kódové základny webu. Zajišťuje kompatibilitu s novými telefony, aplikaci bezpečnostních záplat a prevenci proti útokům.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80" alt="Responzivní design">
+            </div>
+            <div class="term-content">
+                <div class="term-label">05 UX Design</div>
+                <h3 class="term-title">Responzivní design</h3>
+                <p class="term-desc">
+                    Schopnost webu se automaticky adaptovat pro jakékoliv zařízení. Klíčový faktor, protože více než polovina zákazníků přijde z mobilu.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="SSL certifikát">
+            </div>
+            <div class="term-content">
+                <div class="term-label">06 Šifrování</div>
+                <h3 class="term-title">SSL certifikát (HTTPS)</h3>
+                <p class="term-desc">
+                    Digitální certifikát, který šifruje veškerou komunikaci mezi webem a návštěvníkem. Pozná se podle zámečku v adresním řádku. Bez něj Google váš web označí jako „nezabezpečený" a zákazníci ztratí důvěru ještě před tím, než uvidí obsah.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Rychlost načítání">
+            </div>
+            <div class="term-content">
+                <div class="term-label">07 Výkon</div>
+                <h3 class="term-title">Rychlost načítání (Core Web Vitals)</h3>
+                <p class="term-desc">
+                    Sada metrik od Google, která měří reálný zážitek návštěvníka — jak rychle se web zobrazí, jak brzy je možné klikat a jestli obsah při načítání „neskáče". Weby, které tyto metriky splňují, mají výrazně lepší pozice ve vyhledávání a nižší míru odchodů.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80" alt="Analytika">
+            </div>
+            <div class="term-content">
+                <div class="term-label">08 Data</div>
+                <h3 class="term-title">Webová analytika</h3>
+                <p class="term-desc">
+                    Nástroje (např. Google Analytics), které sledují, kolik lidí web navštíví, odkud přicházejí, co je zajímá a kde odcházejí. Díky datům víte, co funguje, a můžete dělat informovaná rozhodnutí místo odhadů.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="CTA">
+            </div>
+            <div class="term-content">
+                <div class="term-label">09 Konverze</div>
+                <h3 class="term-title">Výzva k akci (CTA)</h3>
+                <p class="term-desc">
+                    Tlačítko nebo odkaz, který návštěvníka navede k dalšímu kroku — „Nezávazně poptat", „Zavolat" nebo „Objednat". Správně umístěné CTA je rozdíl mezi webem, který jen vypadá hezky, a webem, který skutečně přináší zákazníky.
+                </p>
+            </div>
+        </div>
+
+        <div class="term-item">
+            <div class="term-image">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80" alt="CDN">
+            </div>
+            <div class="term-content">
+                <div class="term-label">10 Distribuce</div>
+                <h3 class="term-title">CDN (Content Delivery Network)</h3>
+                <p class="term-desc">
+                    Síť serverů rozmístěných po celém světě, která doručuje obsah vašeho webu z nejbližšího místa k návštěvníkovi. Výsledek? Bleskurychlé načítání bez ohledu na to, jestli zákazník sedí v Praze, Londýně nebo New Yorku.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="guide-footer-note">
+        <p>Desatero zvládnuto. Teď už víte, do čeho investujete.</p>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Máte otázky?</h2>
+                <p>Rádi vám vše vysvětlíme a navrhneme řešení na míru.</p>
+                <a href="/kontakt" class="btn btn-primary btn-lg">
+                    Kontaktovat nás <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="nav-logo">
+                        <img src="https://i.postimg.cc/X75SXznZ/625002757-17842857042686523-903789770019624371-n.jpg" alt="WebPojede - Profesionální tvorba webových stránek a e-shopů na míru" class="logo-icon">
+                        <span>WebPojede</span>
+                    </a>
+                    <p>Profesionální tvorba webových stránek a aplikací.</p>
+                    <p class="footer-ico">IČO: 22508066</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigace</h4>
+                    <a href="/">Domů</a>
+                    <a href="/sluzby">Služby</a>
+                    <a href="/cenik">Ceník</a>
+                    <a href="/o-nas">O nás</a>
+                    <a href="/pruvodce">Průvodce</a>
+                    <a href="/kontakt">Kontakt</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Služby</h4>
+                    <a href="/sluzby#weby">Webové stránky</a>
+                    <a href="/sluzby#aplikace">Webové aplikace</a>
+                    <a href="/pruvodce">Průvodce pojmy</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontakt</h4>
+                    <a href="mailto:info@webpojede.cz">info@webpojede.cz</a>
+                    <a href="tel:+420773009851">+420 773 009 851</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 WebPojede. Ondřej Bayer & David Kropáč.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Platba - WebPojede.cz</title>
+    <link rel="canonical" href="https://webpojede.cz/checkout">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+            background: #f5f5f7;
+            min-height: 100vh;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .checkout-container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 48px 20px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo a {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+
+        .logo span {
+            color: #0071e3;
+        }
+
+        .product-info {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .product-name {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1d1d1f;
+            letter-spacing: -0.5px;
+        }
+
+        .product-description {
+            font-size: 15px;
+            color: #86868b;
+            margin-bottom: 12px;
+        }
+
+        .product-price {
+            font-size: 17px;
+            color: #1d1d1f;
+        }
+
+        .product-price strong {
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        /* Payment Request Button (Apple Pay / Google Pay) */
+        #payment-request-button {
+            margin-bottom: 16px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #86868b;
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #d2d2d7;
+        }
+
+        .divider span {
+            padding: 0 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #1d1d1f;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 16px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #1d1d1f;
+            transition: all 0.2s;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0071e3;
+            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: #86868b;
+        }
+
+        .form-group input.error {
+            border-color: #ff3b30;
+        }
+
+        .stripe-element {
+            padding: 12px 14px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+
+        .stripe-element.StripeElement--focus {
+            border-color: #0071e3;
+            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+        }
+
+        .stripe-element.StripeElement--invalid {
+            border-color: #ff3b30;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            color: #fff;
+            background: #0071e3;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #0077ed;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .submit-btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .submit-btn.loading::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #fff2f2;
+            border: 1px solid #ffcdd2;
+            color: #c62828;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #86868b;
+        }
+
+        .secure-badge svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #0071e3;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 480px) {
+            .checkout-container {
+                padding: 32px 16px;
+            }
+
+            .product-name {
+                font-size: 24px;
+            }
+
+            .product-price strong {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="logo">
+            <a href="https://webpojede.cz">Web<span>Pojede</span>.cz</a>
+        </div>
+
+        <div class="product-info">
+            <div class="product-name">DIGITAL TARIF</div>
+            <div class="product-description">doména, hosting a základní správa webu</div>
+            <div class="product-price"><strong>300 Kč</strong> / měsíc</div>
+        </div>
+
+        <!-- Apple Pay / Google Pay - zobrazí se jen pokud je dostupný -->
+        <div id="payment-request-button"></div>
+        
+        <div class="divider" id="divider">
+            <span>nebo platba kartou</span>
+        </div>
+
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="vas@email.cz" required autocomplete="email">
+            </div>
+
+            <div class="form-group">
+                <label for="name">Jméno na kartě</label>
+                <input type="text" id="name" name="name" placeholder="Jan Novák" required autocomplete="cc-name">
+            </div>
+
+            <div class="form-group">
+                <label>Platební karta</label>
+                <div id="card-element" class="stripe-element"></div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                Zaplatit 300 Kč
+            </button>
+
+            <div class="error-message" id="error-message"></div>
+        </form>
+
+        <div class="secure-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Zabezpečeno přes Stripe
+        </div>
+
+        <a href="https://webpojede.cz" class="back-link">Zpět na webpojede.cz</a>
+    </div>
+
+    <script>
+        // Konfigurace
+        const STRIPE_PUBLIC_KEY = 'pk_live_51T0RTU1kzp7GV43mcwt8Wbw4Gi6ELSCROtMtWLrknsw309ZjYbNdfEMzEWHQqdFONByIpgRTuP08Xgtdg0FM6pDT00d3YvuOcj';
+        
+        // Inicializace Stripe
+        const stripe = Stripe(STRIPE_PUBLIC_KEY);
+        const elements = stripe.elements({ locale: 'cs' });
+
+        // Card Element
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    color: '#1d1d1f',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif',
+                    fontSize: '16px',
+                    '::placeholder': { color: '#86868b' }
+                },
+                invalid: {
+                    color: '#ff3b30',
+                    iconColor: '#ff3b30'
+                }
+            }
+        });
+        cardElement.mount('#card-element');
+
+        // Payment Request API (Apple Pay / Google Pay)
+        const paymentRequest = stripe.paymentRequest({
+            country: 'CZ',
+            currency: 'czk',
+            total: {
+                label: 'DIGITAL TARIF - měsíční předplatné',
+                amount: 30000, // 300 CZK v haléřích
+            },
+            requestPayerName: true,
+            requestPayerEmail: true,
+        });
+
+        const prButton = elements.create('paymentRequestButton', {
+            paymentRequest: paymentRequest,
+            style: {
+                paymentRequestButton: {
+                    type: 'default',
+                    theme: 'dark',
+                    height: '48px'
+                }
+            }
+        });
+
+        // Zkontroluj dostupnost Apple Pay / Google Pay
+        paymentRequest.canMakePayment().then(result => {
+            if (result) {
+                prButton.mount('#payment-request-button');
+            } else {
+                document.getElementById('payment-request-button').classList.add('hidden');
+                document.getElementById('divider').classList.add('hidden');
+            }
+        });
+
+        // Prvky
+        const form = document.getElementById('payment-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorMessage = document.getElementById('error-message');
+        const emailInput = document.getElementById('email');
+        const nameInput = document.getElementById('name');
+
+        // Stav formuláře
+        let cardComplete = false;
+        let isProcessing = false;
+
+        // Validace
+        function validateForm() {
+            const emailValid = emailInput.value && emailInput.validity.valid;
+            const nameValid = nameInput.value.trim().length >= 2;
+            submitBtn.disabled = !emailValid || !nameValid || !cardComplete || isProcessing;
+        }
+
+        // Zobrazit chybu
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function hideError() {
+            errorMessage.style.display = 'none';
+        }
+
+        function setLoading(loading) {
+            isProcessing = loading;
+            if (loading) {
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+            } else {
+                submitBtn.classList.remove('loading');
+                validateForm();
+            }
+        }
+
+        // Event listeners pro validaci
+        emailInput.addEventListener('input', validateForm);
+        nameInput.addEventListener('input', validateForm);
+        
+        cardElement.on('change', (event) => {
+            cardComplete = event.complete;
+            if (event.error) {
+                showError(event.error.message);
+            } else {
+                hideError();
+            }
+            validateForm();
+        });
+
+        // Apple Pay / Google Pay handler
+        paymentRequest.on('paymentmethod', async (ev) => {
+            try {
+                // Vytvoř subscription přes API
+                const response = await fetch('/api/create-subscription', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: ev.payerEmail,
+                        name: ev.payerName,
+                        paymentMethodId: ev.paymentMethod.id
+                    })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.error || 'Chyba při zpracování platby');
+                }
+
+                const { clientSecret, subscriptionId, status } = await response.json();
+
+                if (status === 'active') {
+                    ev.complete('success');
+                    window.location.href = '/success?subscription=' + subscriptionId;
+                    return;
+                }
+
+                const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: ev.paymentMethod.id
+                });
+
+                if (error) {
+                    ev.complete('fail');
+                    showError(error.message);
+                } else if (paymentIntent.status === 'succeeded') {
+                    ev.complete('success');
+                    window.location.href = '/success?subscription=' + subscriptionId;
+                }
+            } catch (error) {
+                ev.complete('fail');
+                showError(error.message);
+            }
+        });
+
+        // Form submit - platba kartou
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (isProcessing) return;
+            
+            hideError();
+            setLoading(true);
+
+            const email = emailInput.value;
+            const name = nameInput.value;
+
+            try {
+                // 1. Vytvoř payment method
+                const { error: pmError, paymentMethod } = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement,
+                    billing_details: { name, email }
+                });
+
+                if (pmError) {
+                    throw new Error(pmError.message);
+                }
+
+                // 2. Vytvoř subscription přes API
+                const response = await fetch('/api/create-subscription', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        name,
+                        paymentMethodId: paymentMethod.id
+                    })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.error || 'Chyba při vytváření předplatného');
+                }
+
+                const { clientSecret, subscriptionId, status } = await response.json();
+
+                // Pokud je subscription už aktivní (např. trial)
+                if (status === 'active') {
+                    window.location.href = '/success?subscription=' + subscriptionId;
+                    return;
+                }
+
+                // 3. Potvrď platbu
+                const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret);
+
+                if (confirmError) {
+                    throw new Error(confirmError.message);
+                }
+
+                if (paymentIntent.status === 'succeeded') {
+                    window.location.href = '/success?subscription=' + subscriptionId;
+                }
+
+            } catch (error) {
+                showError(error.message);
+                setLoading(false);
+            }
+        });
+    </script>
+</body>
+</html>
