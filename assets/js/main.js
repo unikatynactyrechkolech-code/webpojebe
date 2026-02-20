@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initParallax();
     initTextReveal();
+    initShowcaseSlider();
 });
 
 /**
@@ -502,6 +503,200 @@ function initBrowserSlideshow() {
 
 // Spustit slideshow
 initBrowserSlideshow();
+
+/**
+ * Interactive Showcase Slider
+ */
+function initShowcaseSlider() {
+    const slider = document.querySelector('.showcase-slider');
+    if (!slider) return;
+    
+    const track = slider.querySelector('.showcase-track');
+    const slides = slider.querySelectorAll('.showcase-slide');
+    const prevBtn = slider.querySelector('.showcase-prev');
+    const nextBtn = slider.querySelector('.showcase-next');
+    const dotsContainer = slider.querySelector('.showcase-dots');
+    
+    if (!track || slides.length === 0) return;
+    
+    let currentIndex = 0;
+    let autoplayInterval;
+    let isAutoplayPaused = false;
+    
+    // Create dots
+    slides.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = dotsContainer.querySelectorAll('.dot');
+    
+    // Set first slide as active
+    slides[0].classList.add('active');
+    
+    function goToSlide(index) {
+        // Remove active from all
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        
+        // Set new index
+        currentIndex = index;
+        
+        // Transform track
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Add active class
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+    }
+    
+    function nextSlide() {
+        const next = (currentIndex + 1) % slides.length;
+        goToSlide(next);
+    }
+    
+    function prevSlide() {
+        const prev = (currentIndex - 1 + slides.length) % slides.length;
+        goToSlide(prev);
+    }
+    
+    // Button events
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+    });
+    
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!isElementInViewport(slider)) return;
+        
+        if (e.key === 'ArrowRight') {
+            nextSlide();
+            resetAutoplay();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+            resetAutoplay();
+        }
+    });
+    
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        pauseAutoplay();
+    }, { passive: true });
+    
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        resumeAutoplay();
+    }, { passive: true });
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+    
+    // Autoplay
+    function startAutoplay() {
+        autoplayInterval = setInterval(() => {
+            if (!isAutoplayPaused) {
+                nextSlide();
+            }
+        }, 6000);
+    }
+    
+    function pauseAutoplay() {
+        isAutoplayPaused = true;
+    }
+    
+    function resumeAutoplay() {
+        isAutoplayPaused = false;
+    }
+    
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+    
+    // Pause on hover
+    slider.addEventListener('mouseenter', pauseAutoplay);
+    slider.addEventListener('mouseleave', resumeAutoplay);
+    
+    // Start autoplay
+    startAutoplay();
+    
+    // Animate stats when in view
+    const stats = document.querySelector('.references-stats');
+    if (stats) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(stats);
+    }
+    
+    function animateStats() {
+        const statNumbers = document.querySelectorAll('.references-stats .stat-number');
+        
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.dataset.count, 10);
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function updateCount(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Easing function
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(easeOut * target);
+                
+                stat.textContent = current;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCount);
+                } else {
+                    stat.textContent = target;
+                }
+            }
+            
+            requestAnimationFrame(updateCount);
+        });
+    }
+    
+    // Helper function
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= -rect.height &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + rect.height
+        );
+    }
+}
 
 // Console Easter Egg
 console.log('%c🚀 WebPojede', 'font-size: 24px; font-weight: bold; color: #0071e3;');
