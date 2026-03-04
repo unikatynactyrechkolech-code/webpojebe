@@ -1842,12 +1842,29 @@ body.menu-open {
     transform: translateY(-4px);
 }
 
+/* Laptop mockup style - for real laptop photos */
+.service-image-wrapper.laptop-mockup {
+    border-radius: 16px;
+    background: transparent;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow: visible;
+}
+
+.service-image-wrapper.laptop-mockup img {
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+.service-image-wrapper.laptop-mockup:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
 .service-image {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
-    aspect-ratio: 4/3;
 }
 
 /* Process Section Layout */
@@ -1861,14 +1878,15 @@ body.menu-open {
 .process-image-wrapper {
     position: sticky;
     top: 100px;
-    border-radius: 24px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--card-shadow-hover);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     transition: all var(--transition);
 }
 
 .process-image-wrapper:hover {
-    transform: scale(1.02);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
 }
 
 .process-image {
@@ -1876,6 +1894,7 @@ body.menu-open {
     height: auto;
     display: block;
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .section-divider {
