@@ -1,26 +1,38 @@
 # robots.txt for webpojede.cz
+# https://webpojede.cz
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /checkout
+Disallow: /success
+Disallow: /tarify/starter
+Disallow: /tarify/digital
+Disallow: /tarify/business
 
 # Sitemap location
 Sitemap: https://webpojede.cz/sitemap.xml
 
-# Crawl-delay (optional, be nice to servers)
+# Crawl-delay
 Crawl-delay: 1
 
-# Allow all search engines
+# Googlebot
 User-agent: Googlebot
 Allow: /
+Disallow: /api/
+Disallow: /checkout
+Disallow: /success
 
+# Bingbot
 User-agent: Bingbot
 Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Seznambot
-Allow: /
-
-# Block unnecessary files
 Disallow: /api/
-Disallow: /*.json$
+Disallow: /checkout
+Disallow: /success
+
+# Image crawlers
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Cache settings for crawlers
+# All pages are fresh and should be indexed
