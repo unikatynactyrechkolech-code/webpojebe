@@ -80,7 +80,7 @@
     <!-- Main Pricing -->
     <section class="section pricing-main">
         <div class="container">
-            <div class="pricing-grid-full pricing-grid-4">
+            <div class="pricing-grid-full pricing-grid-3">
                 <!-- STARTER -->
                 <div class="pricing-card-full">
                     <div class="pricing-card-header">
@@ -88,7 +88,7 @@
                         <p>Jen web v provozu</p>
                     </div>
                     <div class="pricing-card-price">
-                        <span class="price-amount-lg">199 Kč</span>
+                        <span class="price-amount-lg">190 Kč</span>
                         <span class="price-period">/měsíc</span>
                     </div>
                     <div class="pricing-card-features">
@@ -117,7 +117,7 @@
                         <p>Pro start a jistotu</p>
                     </div>
                     <div class="pricing-card-price">
-                        <span class="price-amount-lg">399 Kč</span>
+                        <span class="price-amount-lg">390 Kč</span>
                         <span class="price-period">/měsíc</span>
                     </div>
                     <div class="pricing-card-features">
@@ -142,10 +142,10 @@
                 <div class="pricing-card-full">
                     <div class="pricing-card-header">
                         <h3>BUSINESS</h3>
-                        <p>Pro růst a rychlost</p>
+                        <p>Pro růst a maximální péči</p>
                     </div>
                     <div class="pricing-card-price">
-                        <span class="price-amount-lg">699 Kč</span>
+                        <span class="price-amount-lg">990 Kč</span>
                         <span class="price-period">/měsíc</span>
                     </div>
                     <div class="pricing-card-features">
@@ -153,9 +153,10 @@
                             <h5>Zahrnuje</h5>
                             <ul>
                                 <li><i class="fas fa-check"></i> Vše z tarifu DIGITAL</li>
-                                <li><i class="fas fa-phone"></i> Přítel na telefonu (Prioritní podpora Po-Pá)</li>
+                                <li><i class="fas fa-phone"></i> Podpora i o víkendu</li>
+                                <li><i class="fas fa-star"></i> Individuální přístup</li>
+                                <li><i class="fas fa-chart-line"></i> Pravidelné SEO a indexace</li>
                                 <li><i class="fas fa-bolt"></i> Přednostní zpracování změn</li>
-                                <li><i class="fas fa-chart-line"></i> Technické SEO a indexace</li>
                                 <li><i class="fas fa-chart-bar"></i> Měsíční report návštěvnosti</li>
                                 <li><i class="fas fa-sync"></i> Neomezené drobné úpravy</li>
                             </ul>
@@ -163,34 +164,6 @@
                     </div>
                     <div class="pricing-card-cta">
                         <a href="/tarify/business" class="btn btn-outline btn-block">Vybrat BUSINESS</a>
-                    </div>
-                </div>
-
-                <!-- INDIVIDUAL -->
-                <div class="pricing-card-full">
-                    <div class="pricing-card-header">
-                        <h3>INDIVIDUAL</h3>
-                        <p>Na míru vašim potřebám</p>
-                    </div>
-                    <div class="pricing-card-price">
-                        <span class="price-amount-lg">999 Kč</span>
-                        <span class="price-period">/měsíc</span>
-                    </div>
-                    <div class="pricing-card-features">
-                        <div class="feature-group">
-                            <h5>Zahrnuje</h5>
-                            <ul>
-                                <li><i class="fas fa-check"></i> Vše z tarifu BUSINESS</li>
-                                <li><i class="fas fa-star"></i> Individuální přístup</li>
-                                <li><i class="fas fa-cogs"></i> Rozšířené funkce na míru</li>
-                                <li><i class="fas fa-headset"></i> Dedikovaná podpora</li>
-                                <li><i class="fas fa-rocket"></i> Prioritní implementace</li>
-                                <li><i class="fas fa-calendar-alt"></i> Pravidelné konzultace</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="pricing-card-cta">
-                        <a href="/tarify/individual" class="btn btn-outline btn-block">Vybrat INDIVIDUAL</a>
                     </div>
                 </div>
             </div>
@@ -264,16 +237,16 @@
 
     <script src="assets/js/main.js"></script>
     <style>
-        .pricing-grid-4 {
+        .pricing-grid-3 {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
-        @media (max-width: 1200px) {
-            .pricing-grid-4 { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 992px) {
+            .pricing-grid-3 { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
-            .pricing-grid-4 { grid-template-columns: 1fr; }
+            .pricing-grid-3 { grid-template-columns: 1fr; }
         }
     </style>
 </body>

@@ -320,17 +320,18 @@
 
         <div class="product-info">
             <div class="product-name">BUSINESS TARIF</div>
-            <div class="product-description">Pro růst a rychlost</div>
-            <div class="product-price"><strong>699 Kč</strong> / měsíc</div>
+            <div class="product-description">Pro růst a maximální péči</div>
+            <div class="product-price"><strong>990 Kč</strong> / měsíc</div>
         </div>
 
         <div class="features-list">
             <h4>Co získáte</h4>
             <ul>
                 <li><i class="fas fa-check"></i> Vše z tarifu DIGITAL</li>
-                <li><i class="fas fa-phone"></i> Přítel na telefonu (Prioritní podpora Po-Pá)</li>
+                <li><i class="fas fa-phone"></i> Podpora i o víkendu</li>
+                <li><i class="fas fa-star"></i> Individuální přístup</li>
+                <li><i class="fas fa-chart-line"></i> Pravidelné SEO a indexace</li>
                 <li><i class="fas fa-bolt"></i> Přednostní zpracování změn</li>
-                <li><i class="fas fa-chart-line"></i> Technické SEO a indexace</li>
                 <li><i class="fas fa-chart-bar"></i> Měsíční report návštěvnosti</li>
                 <li><i class="fas fa-sync"></i> Neomezené drobné úpravy</li>
             </ul>
@@ -360,7 +361,7 @@
             </div>
 
             <button type="submit" class="submit-btn" id="submit-btn" disabled>
-                Zaplatit 699 Kč
+                Zaplatit 990 Kč
             </button>
 
             <div class="error-message" id="error-message"></div>
@@ -380,10 +381,10 @@
     <script>
         // Konfigurace
         const STRIPE_PUBLIC_KEY = 'pk_live_51T0RTU1kzp7GV43mcwt8Wbw4Gi6ELSCROtMtWLrknsw309ZjYbNdfEMzEWHQqdFONByIpgRTuP08Xgtdg0FM6pDT00d3YvuOcj';
-        const PRICE_AMOUNT = 69900; // 699 CZK v haléřích
-        const PRICE_DISPLAY = '699 Kč';
+        const PRICE_AMOUNT = 99000; // 990 CZK v haléřích
+        const PRICE_DISPLAY = '990 Kč';
         const PRODUCT_NAME = 'BUSINESS TARIF';
-        const PRODUCT_ID = 'prod_U7yY8fxjm3ImEy';
+        const PRODUCT_ID = 'prod_U7yadsaAsoiFHS';
         
         // Inicializace Stripe
         const stripe = Stripe(STRIPE_PUBLIC_KEY);
