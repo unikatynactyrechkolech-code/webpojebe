@@ -192,7 +192,7 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     width: 44px;
     height: 44px;
     background: none;
@@ -202,24 +202,20 @@ ul {
 }
 
 .nav-toggle span {
-    width: 22px;
-    height: 2px;
+    width: 18px;
+    height: 1.5px;
     background: var(--text-primary);
-    border-radius: 2px;
+    border-radius: 1px;
     transition: all var(--transition);
 }
 
-/* Hamburger X animation */
+/* Hamburger X animation - Apple style 2 lines */
 .nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(3px, 3px);
 }
 
 .nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(3px, -3px);
 }
 
 /* Body scroll lock when menu open */
