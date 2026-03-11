@@ -12,6 +12,11 @@
     { "source": "/reference", "destination": "/reference.html" },
     { "source": "/checkout", "destination": "/checkout.html" },
     { "source": "/success", "destination": "/success.html" },
+    { "source": "/tarify", "destination": "/tarify.html" },
+    { "source": "/tarify/starter", "destination": "/tarify/starter.html" },
+    { "source": "/tarify/digital", "destination": "/tarify/digital.html" },
+    { "source": "/tarify/business", "destination": "/tarify/business.html" },
+    { "source": "/tarify/individual", "destination": "/tarify/individual.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" }
   ],
   "headers": [
